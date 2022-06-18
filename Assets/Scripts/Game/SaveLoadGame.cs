@@ -24,7 +24,10 @@ public class SaveLoadGame : MonoBehaviour
         _savePath = Application.persistentDataPath + "/save.xml";
         _saveBackupPath = Application.persistentDataPath + "/backup.xml";
     }
-
+    private void Start()
+    {
+        Load();
+    }
     public static void Save()
     {
         Stopwatch stopwatch = new();
@@ -79,7 +82,7 @@ public class SaveLoadGame : MonoBehaviour
             SaveBackup();
         }
         //_game.SetActive(true);
-        _start.SetActive(false);
+        //_start.SetActive(false);
     }
     public static void GameOver()
     {
@@ -100,9 +103,13 @@ public class SaveLoadGame : MonoBehaviour
             save.Save(_savePath);
             SceneManager.LoadScene(0);
         }
-        else
+        else if (File.Exists(_savePath))
         {
-            UnityEngine.Debug.LogError("Файлы сохранения не найден");
+            File.Delete(_savePath);
+        }
+        else 
+        {
+            SceneManager.LoadScene(0);
         }
     }
 

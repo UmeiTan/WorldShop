@@ -23,6 +23,7 @@ public class VisitorController : MonoBehaviour
     private int _currentClientId;
     private int _npcId;
     private bool _clientAccepted;
+    private bool _load = true;
 
     private void OnEnable()
     {
@@ -79,6 +80,10 @@ public class VisitorController : MonoBehaviour
         {
             _acceptClient.onClick.Invoke();
         }
+        else
+        {
+            _load = false;
+        }
 
         node = rootNode.Element("NpcId");
         _npcId = int.Parse(node.Value);
@@ -120,6 +125,11 @@ public class VisitorController : MonoBehaviour
         else
         {
             OnClientsEnded?.Invoke();
+            _numberClients = 5;
+            _currentClientId = 1;
+            _clientView.View(_characterBase.Clients[_currentClientId]);
+            _numberClientsText.text = _numberClients.ToString();
+            OnNewClientCreated?.Invoke(_characterBase.Clients[_currentClientId]);
         }
         SaveLoadGame.Save();
     }
@@ -127,7 +137,15 @@ public class VisitorController : MonoBehaviour
     public void AcceptClient()
     {
         _clientAccepted = true;
-        SaveLoadGame.Save();
+        if (!_load)
+        {
+            SaveLoadGame.Save();
+        }
+        else
+        {
+            _load = false;
+        }
+            
     }
     public void KickClient()
     {

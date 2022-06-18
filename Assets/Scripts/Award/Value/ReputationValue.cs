@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ReputationValue : Value
 {
-    [SerializeField] private Slider _slider;
+    [SerializeField] private Image _slider;
     private static int _value = 0;
     private int _defaultValue = 50;
 
@@ -15,21 +15,34 @@ public class ReputationValue : Value
     {
         Enable();
         AwardController.OnAwardReputationIssued += UpdateValue;
-        UpdateValue(0);
+        SetValue(0);
     }
     private void OnDisable()
     {
         Disable();
         AwardController.OnAwardReputationIssued -= UpdateValue;
     }
-    private void UpdateValue(int value)
+    private void SetValue(int value)
     {
         _value = ChangeValue(value);
         UpdateSlider();
     }
+    private void UpdateValue(int value)
+    {
+        _value = ChangeValue(value);
+        if (_value <= 0)
+        {
+            SaveLoadGame.GameOver();
+        }
+        if (_value >= 100)
+        {
+
+        }
+        UpdateSlider();
+    }
     private void UpdateSlider()
     {
-        _slider.value = _value;
+        _slider.fillAmount = _value/100f;
     }
 
     protected override void Load(XElement root)

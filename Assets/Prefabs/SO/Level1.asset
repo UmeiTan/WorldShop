@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   _baseReputation: 50
-  _rewardMultiplierReputation: 1
-  _rewardMultiplierMoney: 1
+  _awardMultiplierReputation: 1
+  _awardMultiplierMoney: 1
+  _baseReputationPenalty: 1
+  _maxCards: 10
   _maxCardGrade: 1
   _numberElements: 4
   _minClientsSpawn: 3
   _numberClients: 4
-  _maxCards: 10

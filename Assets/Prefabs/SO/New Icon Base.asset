@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: New Icon Base
   m_EditorClassIdentifier: 
   _sprites:
-  - {fileID: 21300000, guid: f3e3f1bdb4adc7f4bbd8d1f458524ad2, type: 3}
-  - {fileID: 21300000, guid: 00f51d76220b4f24a8a9cbd01bd9412d, type: 3}
-  - {fileID: 21300000, guid: f80b8318f062a074d965ad0dfa3d103a, type: 3}
-  - {fileID: 21300000, guid: b03f567b58a6cc9468639165dea3a251, type: 3}
-  - {fileID: 21300000, guid: 067b3619163b26d4ba16f97a977a846e, type: 3}
-  - {fileID: 21300000, guid: bbccd2f34d899534f8a0cc172ca1e81a, type: 3}
+  - {fileID: 21300000, guid: 372acf159fcd06545b51d20ef8af01d1, type: 3}
+  - {fileID: 21300000, guid: da5044b464f2008498e4574eb6752b85, type: 3}
+  - {fileID: 21300000, guid: 5527520dbc4f6c546ab51bf6ffba4c48, type: 3}
+  - {fileID: 21300000, guid: 1a9b670ec644ee7469e47d2074178d63, type: 3}
+  - {fileID: 21300000, guid: 6400e019a5f5e61418832fe65553abc4, type: 3}
+  - {fileID: 21300000, guid: 27266700f96411e439f8c05d6ee93a9d, type: 3}
   - {fileID: 21300000, guid: 24064e73340871c4aa458036bf0bc708, type: 3}
   - {fileID: 21300000, guid: a66c2c83d04cc494eb1bda71682f69d6, type: 3}
   - {fileID: 21300000, guid: 8a8405cb78300044e94fb83ed5d4100f, type: 3}
@@ -30,5 +30,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7cca57efa02f4c242bbff5f2e54e5ed0, type: 3}
   - {fileID: 21300000, guid: cefe19f0ae490124f9c32f13e7f97580, type: 3}
   _sign:
-  - {fileID: 21300000, guid: d8271e75154f5884ca4ea39404c998dc, type: 3}
-  - {fileID: 21300000, guid: eef09c23c8789034ea0c9e7e067e45dd, type: 3}
+  - {fileID: 21300000, guid: bf836a21623556548a017c31856de988, type: 3}
+  - {fileID: 21300000, guid: 4c77e7ecaf3a3914a9211f8d71582cbd, type: 3}

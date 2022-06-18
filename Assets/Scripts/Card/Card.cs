@@ -14,7 +14,7 @@ public class Card : MonoBehaviour
     [SerializeField] private bool _activeCard = false;
     [SerializeField] private CardView _cardView;
 
-    private CardData _cardData; 
+    public CardData _cardData { get; private set; } 
     private Animator _animator;
     private Button _button;
     private bool _cardPending = false;
@@ -24,7 +24,7 @@ public class Card : MonoBehaviour
     readonly int _hashDiscard = Animator.StringToHash("Discard");
     readonly int _hashNextCard = Animator.StringToHash("NextCard");
 
-
+    public void CardNotPending() => _cardPending = false;
     private void Start()
     {
         if (_activeCard)
@@ -80,5 +80,5 @@ public class Card : MonoBehaviour
         if (anim) _animator.SetTrigger(_hashDiscard);
         _button.enabled = false;
     }
-
+    
 }

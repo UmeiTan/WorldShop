@@ -23,6 +23,7 @@ public class CardDeckController : MonoBehaviour
         SaveLoadGame.OnDataSaved += SaveDeck;
         SaveLoadGame.OnDataLoading += LoadDeck;
         SaveLoadGame.OnDefaultDataLoading += GetDefaultDeck;
+        VisitorController.OnClientsEnded += NewCardGenerator;
     }
 
     private void OnDisable()
@@ -33,6 +34,7 @@ public class CardDeckController : MonoBehaviour
         SaveLoadGame.OnDataSaved -= SaveDeck;
         SaveLoadGame.OnDataLoading -= LoadDeck;
         SaveLoadGame.OnDefaultDataLoading -= GetDefaultDeck;
+        VisitorController.OnClientsEnded -= NewCardGenerator;
     }
 
     private void GetDefaultDeck()
@@ -44,27 +46,47 @@ public class CardDeckController : MonoBehaviour
         {
             _cardDeck.Add(new CardData(true, new List<int>() { i }));
             _cardDeck.Add(new CardData(false, new List<int>() { i }));
-            NewCard(_cardDeck);
         }
+        NewDefaultCard(_cardDeck, true);
+        NewDefaultCard(_cardDeck, true);
+        NewDefaultCard(_cardDeck, false);
+        NewDefaultCard(_cardDeck, false);
         _cardDeckView.UpdateText(_cardDeck.Count, _discardDeck.Count);
     }
     private void GetLevelCongig(LevelConfig levelConfig)
     {
         _levelConfig = levelConfig;
     }
-    private void NewCard(List<CardData> list)
+    private void NewCardGenerator()
     {
         bool sign;
-        List<int> elements = new();
-        int typeCard = Random.Range(0, _levelConfig.MaxCardGrade) + 1;//1-3
-
-        sign = Random.Range(0, 100) > _negativeCardChance;
-        for (int i = 0; i < typeCard; i++)
+        List<CardData> temp = new List<CardData>();
+        for (int k = 0; k < 4; k++)
         {
-            elements.Add(Random.Range(0, _levelConfig.NumberElements));
-        }
+            List<int> elements = new();
+            int typeCard = Random.Range(0, _levelConfig.MaxCardGrade) + 1;//1-3
 
-        list.Add (new CardData(sign, elements));
+            sign = Random.Range(0, 100) > _negativeCardChance;
+            for (int i = 0; i < typeCard; i++)
+            {
+                elements.Add(Random.Range(0, _levelConfig.NumberElements));
+            }
+            temp.Add(new CardData(sign, elements));
+        }
+        _cardDeckView.OpenCardSelectionView(temp);
+    }
+    public void GetCard(Card cardData)
+    {
+        _cardDeck.Add(cardData._cardData);
+        _cardDeckView.CloseCardSelectionView();
+        _cardDeckView.UpdateText(_cardDeck.Count, _discardDeck.Count);
+        SaveLoadGame.Save();
+    }
+    private void NewDefaultCard(List<CardData> list, bool sign)
+    {
+        List<int> elements = new();
+        elements.Add(Random.Range(0, _levelConfig.NumberElements));
+        list.Add(new CardData(sign, elements));
     }
     private void UpdateDecks(CardData cardData)
     {
