@@ -86,28 +86,34 @@ public class SaveLoadGame : MonoBehaviour
     }
     public static void GameOver()
     {
-        if (File.Exists(_saveBackupPath) && File.Exists(_savePath))
-        {
-            XElement save = XDocument.Parse(File.ReadAllText(_savePath)).Element("ROOT");
-            XElement saveBackup = XDocument.Parse(File.ReadAllText(_saveBackupPath)).Element("ROOT");
+        //if (File.Exists(_saveBackupPath) && File.Exists(_savePath))
+        //{
+        //    XElement save = XDocument.Parse(File.ReadAllText(_savePath)).Element("ROOT");
+        //    XElement saveBackup = XDocument.Parse(File.ReadAllText(_saveBackupPath)).Element("ROOT");
 
-            save.Element("Deck").RemoveNodes();
-            save.Element("Deck").Add(saveBackup.Element("Deck").Elements());
+        //    save.Element("Deck").RemoveNodes();
+        //    save.Element("Deck").Add(saveBackup.Element("Deck").Elements());
 
-            save.Element("Reputation").Value = saveBackup.Element("Reputation").Value;
+        //    save.Element("Reputation").Value = saveBackup.Element("Reputation").Value;
 
-            save.Element("Visitors").RemoveNodes();
-            save.Element("Visitors").Add(saveBackup.Element("Visitors").Elements());
+        //    save.Element("Visitors").RemoveNodes();
+        //    save.Element("Visitors").Add(saveBackup.Element("Visitors").Elements());
 
-            // = saveBackup.Element("Deck");
-            save.Save(_savePath);
-            SceneManager.LoadScene(0);
-        }
-        else if (File.Exists(_savePath))
+        //    // = saveBackup.Element("Deck");
+        //    save.Save(_savePath);
+        //    SceneManager.LoadScene(0);
+        //}
+        //else 
+        if (File.Exists(_savePath))
         {
             File.Delete(_savePath);
+            if (File.Exists(_saveBackupPath))
+            {
+                File.Delete(_saveBackupPath);
+            }
+            SceneManager.LoadScene(0);
         }
-        else 
+        else
         {
             SceneManager.LoadScene(0);
         }

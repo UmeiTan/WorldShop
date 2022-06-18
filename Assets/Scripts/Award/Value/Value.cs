@@ -20,7 +20,7 @@ public abstract class Value : MonoBehaviour
     {
         SaveLoadGame.OnDataSaved -= Save;
         SaveLoadGame.OnDataLoading -= Load;
-        SaveLoadGame.OnDefaultDataLoading += LoadDefaultState;
+        SaveLoadGame.OnDefaultDataLoading -= LoadDefaultState;
     }
 
     private XElement Save()
